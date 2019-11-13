@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<body>
+   
+    <div id='app'>
+       <button class="botao">Adicionar Box</button> 
+    </div>
+
+    <script>
+
+        var btnElement = document.querySelector('button.botao');
+
+        var containerElement = document.querySelector('#app');
+
+        btnElement.onclick = adcBox;
+
+        function adcBox() {
+            var boxElement = document.createElement('div');
+            boxElement.style.width = 100;
+            boxElement.style.height = 100;
+            boxElement.style.backgroundColor = '#f00';
+
+            containerElement.appendChild(boxElement);
+
+            boxElement.onmouseover = function(){
+               boxElement.style.backgroundColor = getRandomColor();
+            }
+        }
+
+        function getRandomColor() {
+                var letters = "0123456789ABCDEF";
+                var color = "#";
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+    </script>
+
+</body>
+</html>
