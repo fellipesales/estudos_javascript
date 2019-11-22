@@ -14,27 +14,7 @@ function GetRepositories() {
     }
     else {
 
-        listElement.innerHTML = '';
-
-        Render('Carregando');
-
-        axios.get('https://api.github.com/users/' + user + '/repos')
-            .then(function (response) {
-
-                var arrayRepos = response.data;
-
-                ClearList();
-
-                for (repos of arrayRepos) {
-                    Render(repos.name);
-                }
-            })
-            .catch(function (error) {
-                ClearList();
-                alert('Usuário não existe!')
-
-            });
-
+        ListRepositories(user);
     }
 }
 
@@ -52,4 +32,30 @@ function Render(name) {
 
 function ClearList() {
     listElement.innerHTML = '';
+}
+
+function ListRepositories(user){
+
+    listElement.innerHTML = '';
+
+    Render('Carregando');
+
+    axios.get('https://api.github.com/users/' + user + '/repos')
+        .then(function (response) {
+
+            var arrayRepos = response.data;
+
+            ClearList();
+
+            for (repos of arrayRepos) {
+                Render(repos.name);
+            }
+
+        })
+        .catch(function (error) {
+            ClearList();
+            alert('Usuário não existe!')
+
+        });
+
 }
