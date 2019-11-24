@@ -34,7 +34,7 @@ function ClearList() {
     listElement.innerHTML = '';
 }
 
-function ListRepositories(user){
+function ListRepositories(user) {
 
     listElement.innerHTML = '';
 
@@ -53,8 +53,10 @@ function ListRepositories(user){
 
         })
         .catch(function (error) {
-            ClearList();
-            alert('Usuário não existe!')
+            if (error.response.status === 404) {
+                ClearList();
+                alert('Usuário não existe!')
+            }
 
         });
 
